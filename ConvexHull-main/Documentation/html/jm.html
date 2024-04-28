@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Jarvis March</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit&family=Lora:wght@700&family=Montserrat:wght@700&family=Open+Sans:wght@800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+    <div class="container-fluid" id="task1">
+        <div class="row task1">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8 task1">
+                <h1 class="subhead">RNA Folding Problem</h1>
+                <h2>Problem statement</h2>
+                <p>Predicting the most stable secondary structure for an RNA molecule. This structure is crucial for understanding its function as the structure of the molecule determines it’s various properties.</p>
+                <h2 style="padding-top: 1rem;">Concepts</h2>
+                <h3 style="padding-top: 0.5rem;">RNA:</h3>
+                <p>RNA is a basic single stranded biological molecule consisting of four bases ,Adenine ,Uracil ,Cytosine and Guanine which fold into themselves to give complex secondary structures.
+                    <p>There are Various rules that govern secondary structure formation:
+                    <br>➤ Pairs of bases match up, each base matches with 1 other base(Adenine always matches with Uracil,Cytosine always matches with Guanine)
+                    <br>➤ There are no kinks in the folded molecule.
+                    <br>➤ Structures are knot-free.</p></p>
+                <h3>Problem formulation:</h3>
+                <p>Given an RNA sequence represented by a string of characters (A, U, G, C), the goal is to find the most stable secondary structure. Stability is often measured based on minimum free energy and the stability of the molecule is proportional to the number of base-pairs in the molecule.
+                    Hence, we are tasked with finding the secondary structure given an RNA sequence that has the maximum number of base pairings.
+                    <p>An RNA molecule is a string B = b1b2 … bn ,where each bi is one of {A,C,G,U}
+                    <br>An secondary structure on B is a set of pairs S =  {(i , j)}, where 1 ≤ i , j ≤  n and satisfies the following rules:
+                    <br>➤ The ends of each pair are separated by at least 4 intervening bases i.e. if (i , j) ε S, then  i < j - 4 (No sharp turns).
+                    <br>➤ The elements in each pair in S consist of either {A,U} or {C,G} (in either order).
+                    <br>➤ S is a matching: no base appears in more than one pair.
+                    <br>➤ If (i,j) and (k,l) are two pairs in S, then we cannot have i < k < j < l (No knots).</p>
+                </p>
+                <h3>Dynamic programing:</h3>
+                <p>Dynamic programming is an algorithmic technique for efficiently solving problems by breaking them down into smaller, overlapping subproblems.</p>
+                    <p>Here are the key points:
+
+                        <br>1. Overlapping Subproblems:
+
+                The problem can be decomposed into smaller subproblems, and these subproblems share some common structure. Solving them independently can lead to repeated calculations.
+
+                <br>2. Memoization:
+
+                Dynamic programming uses memoization to store the solutions to these subproblems in a table or data structure. When encountering a new subproblem, the table is checked first. If the solution already exists, it's retrieved instead of recomputing it.
+
+                <br>3. Bottom-Up Approach:
+
+                Dynamic programming typically follows a bottom-up approach. We start by solving the simplest subproblems (base cases) and gradually build up to the solution of the entire problem.
+            </p>
+                <p>Benefits:
+
+                <br>➤ Efficiency: By avoiding redundant calculations, dynamic programming often offers significant speed improvements compared to naive recursive approaches.
+                <br>➤ Clarity: Breaking down the problem into smaller, solvable parts can enhance code readability and maintainability.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- <div class="row">
+            <div class="image-container">
+                <img src="../css/jarmar.png" alt="Image description" class="image">
+            </div>
+            <div class="write-up">
+                <br><br>
+                <h2>Jarvis March Main Function</h2>
+                <p>It calls the findInitialOrigin function to find a starting point that is the lowest among the points that have least
+                x-coordinate.
+                It initializes another variable to store the point with the minimum angle in each iteration.
+                It also creates an empty list to store the points that form the convex hull.
+                The function enters a loop inside which:
+                It initializes a variable minAngle to a large value to keep track of the minimum angle found in this iteration.
+                It iterates through all points except the current point to find the next point that forms a counter-clockwise turn in
+                the convex hull boundary.It calculates the angle between the current point and other points using the findAngle
+                function.
+                It compares the calculated angle with the current minimum angle and if the calculated angle is lesser than the current
+                minimum angle then the current minimum angle is updated.
+                It updates the current point to the point found in this iteration.
+                The loop continues till the current point again becomes the initial point.
+                The function then returns the list that stores the points that form the convex hull.
+                <!-- <h2>Complexity</h2>
+                <p>The loop runs until the current point becomes the initial point again. Therefore, there are h iterations of the loop
+                where h is the number of points in the convex-hull.and at each iteration there are n-1 comparisons (with every other
+                point) to find the next point of the convex-hull.
+                therefore , the time complexity is:
+                O(h(n-1)) = O(hn)</p> -->
+            <!-- </div> --> -->
+        <!-- </div> -->
+    </div>
+</body>
+
+</html>

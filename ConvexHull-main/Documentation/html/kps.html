@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>KirkPatrick-Seidel</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit&family=Lora:wght@700&family=Montserrat:wght@700&family=Open+Sans:wght@800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+    <div class="container-fluid" id="task1">
+        <div class="row task1">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8 task1">
+                <h1 class="subhead">RNA Folding Solution</h1>
+                <h2>Solution</h2>
+                <p>
+                    We now take a dynamic programming approach to solve this problem.
+                We structure the sub-problems as follows:
+                <br>1.  OPT(i,j) is the maximum number of base pairs in a secondary structure for bibi+1 … bj. OPT(i,j) = 0, if i≥j-4.
+                <br>2.  In the optimal secondary structure on bibi+1 … bj 
+                <br>➤ if j is not a member of any pair, use OPT(i,j-1).
+                <br>➤ if j pairs with some t < j - 4, knot condition yields two independent sub-problems, OPT(i,t -1) and OPT(t+1,j-1)
+                </p>
+                <p>This gives us the recurrence as follows:
+                OPT(i,j) = max{ OPT(i,j-1)
+                            { max(1+OPT(i,t-1) + OPT(t+1,j-1)) for all t (i,j-5) such that it can pair with j.
+
+                </p>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="image-container">
+                <img src="../css/c1.png" alt="Image description" class="image">
+            </div>
+            <div class="write-up">
+                <br><br>
+                <h2>predictSecondaryStructure</h2>
+                <p>It first checks if the length of the RNA sequence is less than or equal to 5. If so, it prints a message indicating that there are no matching pairs in the sequence.
+                    <br>It then calculates the number of open brackets ('(') in the dot-bracket notation.
+                    <br>It initializes vectors numPairs, splitIndices, and pairs.
+                    <br>It calls the function calculateOptimalSequence to compute the optimal sequence for the secondary structure of the RNA, passing the RNA sequence, vectors for storing pair information, and split indices.
+                    </p><p>Finally, it calls the function printOutputs to print the output of the program and writeToFile to write pairs to a file.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="write-up">
+                <br><br>
+                <h2>main</h2>
+                <p>
+                    It begins by declaring two strings: rna_sequence and actualDotBracket.
+                    <br>It calls the function readFromFile to read the RNA sequence and actual dot-bracket notation from a file.
+                    </p><p>Finally, it returns 0 to indicate successful execution.
+                </p>
+            </div>
+            <div class="image-container">
+                <img src="../css/c2.png" alt="Image description" class="image">
+            </div>
+        </div>
+        <div class="row">
+            <div class="image-container">
+                <img src="../css/c3.png" alt="Image description" class="image">
+            </div>
+            <div class="write-up">
+                <br><br>
+                <h2>findMaxPairs</h2>
+                <p>
+                    This function computes the maximum number of base pairs in the RNA sequence provided.
+                    It initializes a dynamic programming (DP) table and fills it iteratively to find the maximum number of pairs that can be formed.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="write-up">
+                <br><br>
+                <h2>findSplits</h2>
+                <p>
+                    This function finds the optimal index at which a sequence is split into subproblems.
+                    <br>It also uses dynamic programming to calculate the split indices.
+                    <br>The split indices determine where the sequence is divided into smaller segments for further processing.
+                </p>
+            </div>
+            <div class="image-container">
+                <img src="../css/c4.png" alt="Image description" class="image">
+            </div>
+        </div>
+        <div class="row">
+            <div class="image-container">
+                <img src="../css/c5.png" alt="Image description" class="image">
+            </div>
+            <div class="write-up">
+                <br><br>
+                <h2>matchingPairs</h2>
+                <p>
+                    This function returns the index pairs of the matching base pairs in the sequence.
+                    <br>It uses a queue-based breadth-first search (BFS) approach to traverse through the split indices and find matching pairs.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="write-up">
+                <br><br>
+                <h2>calculateOptimalSequence</h2>
+                <p>
+                    This function orchestrates the entire process of secondary structure prediction.
+                    It calls the above functions to compute maximum pairs, find splits, and matching pairs.
+                    Then, it constructs the dot-bracket notation representing the secondary structure, where each '(' and ')' denote a base pair, and '.' denotes an unpaired base.
+                </p>
+            </div>
+            <div class="image-container">
+                <img src="../css/c6.png" alt="Image description" class="image">
+            </div>
+        </div>
+        <div class="row">
+            <div class="image-container">
+                <img src="../css/c7.png" alt="Image description" class="image">
+            </div>
+            <div class="write-up">
+                <br><br>
+                <h2>computeExecutionTime</h2>
+                <p>
+                    It starts by capturing the current time using high_resolution_clock::now(), which provides a high-resolution clock for measuring time.
+Then, it calls the provided function func with the RNA sequence and actual dot-bracket notation as arguments. This function is expected to predict the secondary structure of the RNA molecule.
+After the function call, it captures the current time again to calculate the duration of execution.
+The duration is calculated by subtracting the start time from the stop time and then converting it into milliseconds using duration_cast.
+<br>Finally, it prints out the execution time in milliseconds.
+
+                </p>
+            </div>
+        </div>
+        <!-- <div class="row">
+            <div class="write-up">
+                <br><br>
+                <h2>Complexity</h2>
+                <p>
+                    Kirk-patrick-seidel is a divide and conquer algorithm the upperHull and lowerHull algorithms are recursively called on
+                    the set of points until the size of the set reaches a base case (less than or equal to 2).
+                    In each recursive call, the median splits the data points into 2 equal sets of Tleft and Tright and hence for a set of
+                    size n to be divided into a set of size 2 or lesser we need log(n) recursive calls.
+                    And at each recursive call we have:
+                    Finding the median x-coordinate: O(n) in the worst case.
+                    Partitioning the set: O(n)
+                    Bridge finding (upperBridge and lowerBridge): O(n) on average
+                    Filtering points: O(n)
+                    Therefore, the overall complexity is O(nlogn).
+                </p>
+            </div>
+        </div> -->
+
+    </div>
+</body>
+
+</html>
